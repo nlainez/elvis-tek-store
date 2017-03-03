@@ -1,0 +1,35 @@
+{
+  "name": "elvis-tek-store",
+  "version": "1.0.0",
+  "description": "This challenge is designed to put my NodeJS skills to the test by creating a Rest API to manage a small snacks store called Elvis.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nlainez/elvis-tek-store.git"
+  },
+  "author": "Norman Joya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nlainez/elvis-tek-store/issues"
+  },
+  "homepage": "https://github.com/nlainez/elvis-tek-store#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-standalone": "^6.23.1",
+    "connect-mongo": "^1.3.2",
+    "ejs": "^2.5.6",
+    "express": "^4.14.1",
+    "express-session": "^1.15.1",
+    "mongoose": "^4.3.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.0.0",
+    "passport-twitter": "^1.0.4",
+    "socket.io": "^1.7.3"
+  },
+  "engines": {
+    "node": "6.10.0"
+  }
+}

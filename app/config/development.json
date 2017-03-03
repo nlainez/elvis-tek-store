@@ -1,0 +1,11 @@
+{
+  "host": "http://localhost:3000",
+  "dbURI": "mongodb://norman_ets:123456@ds113670.mlab.com:13670/elvis_tek_store",
+  "sessionSecret": "applaudostudios",
+  "fb": {
+    "clientID": "1820641661535451",
+    "clientSecret": "e5c4ad9ac1d857f7c91ab28f28cb8ac2",
+    "callbackURL": "//localhost:3000/auth/facebook/callback",
+    "profileFields": ["id", "displayName", "photos"]
+  }
+}
