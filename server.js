@@ -14,6 +14,6 @@ app.use(passport.session());
 
 app.use('/', elvisTekStore.router);
 
-elvisTekStore.ioServer(app).listen(app.get('port'), () => {
+app.listen(app.get('port'), () => {
   console.log('elvisTekStore running on port: ', app.get('port'));
 });

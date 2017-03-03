@@ -8,7 +8,19 @@ module.exports = () => {
     //////////////// Routes for "get" method
     'get': {
       '/': (req, res, next) => {
-        res.render('login');
+        res.redirect('/home');
+      },
+      '/home': (req, res, next) => {
+        res.render('home');
+      },
+      '/auth/facebook': passport.authenticate('facebook'),
+      '/auth/facebook/callback': passport.authenticate('facebook', {
+        successRedirect: '/home',
+        failureRedirect: '/'
+      }),
+      '/logout': (req, res, next) => {
+        req.logout();
+        res.redirect('/');
       }
     },
 

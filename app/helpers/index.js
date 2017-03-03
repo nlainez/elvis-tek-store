@@ -55,7 +55,8 @@ let createNewUser = profile => {
     let newElvisTekUser = new db.userModel({
       profileId: profile.id,
       fullName: profile.displayName,
-      profilePic: profile.photo[0].value || ""
+      profilePic: profile.photos[0].value || "",
+      isAdmin: false
     });
 
     newElvisTekUser.save(error => {
