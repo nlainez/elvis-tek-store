@@ -11,7 +11,16 @@ module.exports = () => {
         res.redirect('/home');
       },
       '/home': (req, res, next) => {
-        res.render('home');
+        res.render('home', {
+          user: req.user,
+          host: config.host
+        });
+      },
+      '/addProducts': (req, res, next) => {
+        res.render('addProducts', {
+          user: req.user,
+          host: config.host
+        });
       },
       '/auth/facebook': passport.authenticate('facebook'),
       '/auth/facebook/callback': passport.authenticate('facebook', {

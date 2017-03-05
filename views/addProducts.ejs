@@ -1,0 +1,36 @@
+<% include ./partials/header.ejs %>
+  <div class="ui main text container segment">
+		<div class="ui huge header">New Product</div>
+		<form id="products-form" action="/addProducts" method="POST" class="ui form">
+		  	<div class="field">
+	        <label for="productName">Product Name: </label><br>
+	        <input class="form-control" type="text" name="product[productName]" placeholder="New product name" />
+        </div>
+				</br>
+        <div class="ui two column grid">
+          <div class="column">
+            <div class="field">
+              <label for="price">Price: </label><br>
+              <input class="form-control" type="number" name="quantity" min="1" max="100" name="product[price]" placeholder="Price" />
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label for="price">Amount: </label><br>
+              <input class="form-control" type="number" name="quantity" min="1" max="100" name="product[amount]" placeholder="Amount" />
+            </div>
+          </div>
+        </div>
+				  
+
+
+		  	<br />
+
+		  	<div class="center">
+				<input id="messsage-for-change" type="hidden" name="message" value=""/>
+		  		<div onclick="showModal()" class="ui green button">Create Gearbox</div>
+		  	</div>
+		</form>
+	</div>
+
+<% include ./partials/footer.ejs %>

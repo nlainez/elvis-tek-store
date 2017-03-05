@@ -2,8 +2,9 @@
   <div class="main container">
 		<br>
 		<h1 style="text-align: center;">Products List</h1>
+
 		<!--<table id="data-table-elvistek-store" class="ui celled table" cellspacing="0"  style="margin:auto;width:75%">-->
-    <table id="data-table-elvistek-store" class="ui celled table" cellspacing="0" style="margin:auto;width:80%">
+    <table id="data-table-elvistek-store" class="ui celled table" cellspacing="0" style="margin:auto;width:1080px">
 			<thead>
 				<tr>
 					<th>Product Name</th>
@@ -11,8 +12,12 @@
           <th>Available Units</th>
 					<th>Action(s)</th>
           <th></th>
-          <th></th>
-          <th></th>
+          <% if(user !== undefined){
+            %>
+              <th></th>
+              <th></th>
+            <%
+          }%>
 				</tr>
 			</thead>
       
@@ -31,19 +36,24 @@
             <button class="ui inverted blue button">Like</button>
           </td>
           <td>
-            <a href="/edit/2345678">
-              <button class="ui black button">Edit</button>
-            </a>
-          </td>
-          <td>
             <a href="/buy/2345678">
               <button class="ui green button">Buy</button>
             </a>
           </td>
-          <td>
-            <div name="2345678" onclick="deleteModal(this)" class="ui red button">Delete</div>
-          </td>
-				</tr>
+          <% if (user !== undefined){
+            %>
+              <td>
+                <a href="/edit/2345678">
+                  <button class="ui black button">Edit</button>
+                </a>
+              </td>
+              
+              <td>
+                <div name="2345678" onclick="deleteModal(this)" class="ui red button">Delete</div>
+              </td>
+            <%
+          }%>
+        </tr>
 			</tbody>
 		</table>
 	</div>
