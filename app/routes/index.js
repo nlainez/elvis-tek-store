@@ -1,5 +1,6 @@
 'use strict';
 const h = require('../helpers');
+const db = require('../db');
 const passport = require('passport');
 const config = require('../config');
 
@@ -14,6 +15,13 @@ module.exports = () => {
         res.render('home', {
           user: req.user,
           host: config.host
+        });
+      },
+      '/users': (req, res, next) => {
+      //  let users = h.findElvistekUsers();
+        let users = h.findElvistekUsers();
+        res.render('users', {
+          users: users
         });
       },
       '/addProducts': (req, res, next) => {
@@ -34,7 +42,9 @@ module.exports = () => {
     },
 
     //////////////// Routes for "post" method
-    'post': {},
+    'post': {
+      '/addProducts': {}
+    },
 
     //////////////// Routes for "put" method
     'put': {},

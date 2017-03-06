@@ -8,4 +8,6 @@ $(document).ready(function() {
 
     $('.row:first-child').attr('style', 'width: 1080px !important; margin: auto');
     $('.row:last-child').attr('style', 'width: 1080px !important; margin: auto');
+
+    $('#productAmount').dropdown();
   });

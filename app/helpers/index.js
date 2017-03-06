@@ -49,6 +49,19 @@ let findOne = profileID => {
   });
 };
 
+// Find the users to display in app
+let findElvistekUsers = () => {
+  return new Promise((resolve, reject) => {
+    db.userModel.find({}, (error, users) => {
+      if(error){
+        reject(error);
+      } else {
+        resolve(users)
+      }
+    });
+  });
+}
+
 // Create a new user and returns that instanceof
 let createNewUser = profile => {
   return new Promise((resolve, reject) => {
@@ -69,6 +82,26 @@ let createNewUser = profile => {
   });
 };
 
+// Create a new product and return that instanceof
+let createNewProduct = product => {
+  return new Promise((resolve, reject) => {
+    let newProduct = new db.productModel({
+      productName: product.productName,
+      price: product.price,
+      amount: product.amount,
+      like: 0
+    });
+
+    newProduct.save(error => {
+      if(error){
+        reject(error);
+      } else {
+        resolve(newProduct);
+      }
+    });
+  });
+};
+
 // A Middleware that checks to see if the user is authenticated & logged in
 let isAuthenticated = (req, res, next) => {
   if(req.isAuthenticated()) { // "req.isAuthenticated" is a method provided by Passport
@@ -83,5 +116,7 @@ module.exports = {
   findById,
   findOne,
   createNewUser,
+  createNewProduct,
+  findElvistekUsers,
   isAuthenticated
 };
