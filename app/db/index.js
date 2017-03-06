@@ -37,9 +37,9 @@ const elvisTekSell = new Mongoose.Schema({
 });
 
 // turning schemas into usable models
-let userModel = Mongoose.model('elvisTekUser', elvisTekUser);
-let productModel = Mongoose.model('elvisTekProduct', elvisTekProduct);
-let sellModel = Mongoose.model('elvisTekSell', elvisTekSell);
+let userModel = Mongoose.model('elvistekusers', elvisTekUser);
+let productModel = Mongoose.model('products', elvisTekProduct);
+let sellModel = Mongoose.model('elvisteksell', elvisTekSell);
 
 module.exports = {
   Mongoose,

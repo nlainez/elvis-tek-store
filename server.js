@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(elvisTekStore.session);
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(methodOverride("_method"));
+app.use(methodOverride());
 
 app.use('/', elvisTekStore.router);
 

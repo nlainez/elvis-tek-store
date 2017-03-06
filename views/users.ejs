@@ -1,5 +1,50 @@
 <% include ./partials/header.ejs %>
-  <% users.forEach(function(user){ %>
-    <%= user.profileId %>
-  <% }) %>
+  <div class="main container">
+		<br>
+		<h1 style="text-align: center;">Users List</h1>
+
+		<!--<table id="data-table-elvistek-store" class="ui celled table" cellspacing="0"  style="margin:auto;width:75%">-->
+    <table id="data-table-elvistek-store" class="ui celled table" cellspacing="0" style="margin:auto;width:1080px">
+			<thead>
+				<tr>
+					<th></th>
+          <th>User</th>
+          <th>Is Admin</th>
+          <% if(user.isAdmin === true) { %>
+					    <th>Action(s)</th>
+              <th></th>
+          <% } %>
+				</tr>
+			</thead>
+      
+			<tbody>
+        <% users.forEach(function(user) { %>
+          <tr>
+            <td>
+              <img src="<%= user.profilePic %>">
+            </td>
+            <td>
+              <%= user.fullName %>
+            </td>
+            <td>
+              <% if(user.isAdmin === true) { %>
+                Yes
+              <% } else { %>
+                No
+              <% } %>
+            </td>
+            <td>
+              <a href="/editUser/<%= user.profileId %>">
+                <button class="ui black button">Edit</button>
+              </a>
+            </td>
+            <td>
+              <div name="2345678" onclick="deleteModal(this)" class="ui red button">Delete</div>
+            </td>
+          </tr>
+        <% }) %>
+			</tbody>
+		</table>
+	</div>
+  
 <% include ./partials/footer.ejs %>

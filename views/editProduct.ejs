@@ -1,0 +1,39 @@
+<% include ./partials/header.ejs %>
+  <div class="ui main text container segment">
+		<div class="ui huge header">New Product</div>
+		<form id="products-form" action="/addProducts" method="POST" class="ui form">
+		  	<div class="field">
+	        <label for="productName">Product Name: </label><br>
+	        <input class="form-control" type="text" name="product[productName]" placeholder="New product name" value="<%= product.productName %>" />
+        </div>
+				</br>
+        <div class="ui two column grid">
+          <div class="column">
+            <div class="field">
+              <label for="price">Price: </label><br>
+              <input class="form-control" type="number" name="quantity" min="1" max="100" name="product[price]" placeholder="Price" value="<%= product.price %>" />
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+						  <label for="amount">Amount:</label><br>
+						  <select class="form-control ui selection dropdown" name="product[amount]" id="productAmount">
+                
+              <% for(var i = 1; i <= 100; i++){ %>
+                <% if(i === product.amount) { %>
+                  <option value="<%= product.amount %>" selected><%= product.amount %></option>
+                <% } %>
+
+                <option value="<%= i %>"><%= i %></option>
+              <% } %>
+              </select>
+            </div>
+          </div>
+        </div>
+        <br />
+        <input id="submitEdition" class="ui black button" type="submit" name="submit" value="Edit product" />
+      <br />
+		</form>
+	</div>
+
+<% include ./partials/footer.ejs %>

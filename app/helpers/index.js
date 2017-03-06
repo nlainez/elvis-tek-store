@@ -2,6 +2,7 @@
 const router = require('express').Router();
 const db = require('../db');
 const crypto = require('crypto');
+const mongodb = require('mongodb');
 
 let _registerRoutes = (routes, method) => {
   for(let key in routes) {
@@ -51,16 +52,57 @@ let findOne = profileID => {
 
 // Find the users to display in app
 let findElvistekUsers = () => {
-  return new Promise((resolve, reject) => {
-    db.userModel.find({}, (error, users) => {
-      if(error){
-        reject(error);
-      } else {
-        resolve(users)
-      }
-    });
+  return db.userModel.find({}, function(error, data) {
+    if(error) {
+      console.log(error);
+    } else {
+      return data;
+    }
   });
 }
+
+// Find the products to display in app
+let findElvistekProducts = () => {
+  return db.productModel.find({}, function(error, data) {
+    if(error){
+      console.log(error);
+    } else {
+      return data;
+    }
+  });
+};
+
+// Find product by id
+let findProductById = productID => {
+  return db.productModel.findOne({_id: new mongodb.ObjectID(productID)}, function(error, data) {
+    if(error){
+      console.log(error);
+    } else {
+      return data;
+    }
+  });
+};
+
+// Find existing user by id
+// let findUserById = profileID => {
+//   return db.userModel.findOne({'profileId': profileID}, function(error, data) {
+//     if(error) {
+//       console.log(error);
+//     } else {
+//       return data;
+//     }
+//   });
+// };
+
+// Delete specific product
+let deleteProduct = productID => {
+  db.productModel.deleteOne({ _id: new mongodb.ObjectID(productID)});
+};
+
+// Delete specific user
+let deleteUser = profileID => {
+  db.userModel.findOneAndRemove({ _id: new mongodb.ObjectID(profileID)});
+};
 
 // Create a new user and returns that instanceof
 let createNewUser = profile => {
@@ -118,5 +160,10 @@ module.exports = {
   createNewUser,
   createNewProduct,
   findElvistekUsers,
+  findElvistekProducts,
+  findProductById,
+  // findUserById,
+  deleteProduct,
+  deleteUser,
   isAuthenticated
 };

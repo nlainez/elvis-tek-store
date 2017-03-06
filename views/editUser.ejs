@@ -1,0 +1,28 @@
+<% include ./partials/header.ejs %>
+  <div class="ui main text container segment">
+		<div class="ui huge header">New Product</div>
+		<form id="products-form" action="/addProducts" method="POST" class="ui form">
+		  	<div class="field">
+	        <label for="fullName">User Name: </label><br>
+	        <input class="form-control" type="text" name="user[fullName]" placeholder="New product name" value="<%= user.fullName %>" readonly="readonly"/>
+        </div>
+        <div class="field">
+					<label for="amount"> Is Administrator:</label><br>
+					<select class="form-control ui selection dropdown" name="product[amount]" id="productAmount">
+              <% if(user.isAdmin){ %>
+                <option value="true" selected="selected">Yes</option>
+                <option value="false">No</option>
+              <% } else { %>
+                <option value="true">Yes</option>
+                <option value="false" selected="selected">No</option>
+              <% } %>
+          </select>
+        </div>
+				</br>
+        <br />
+        <input id="submitEdition" class="ui black button" type="submit" name="submit" value="Edit product" />
+      <br />
+		</form>
+	</div>
+
+<% include ./partials/footer.ejs %>
