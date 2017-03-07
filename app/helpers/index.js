@@ -158,9 +158,6 @@ let createNewProduct = product => {
 
 // Find one product and update with new data
 let editProduct = (productID, product) => {
-  // {
-  //   $inc: {amount: product.amount}
-  // },
   let newAmount = parseInt(product.amount);
   let currentAmount = 0;
   db.productModel.findOne({_id: new mongodb.ObjectID(productID)}, function (error, result) {
@@ -176,6 +173,30 @@ let editProduct = (productID, product) => {
         amount: newAmount
       }, function(error, data) {
         if(error){
+          console.log(error);
+        } else {
+          return data
+        }
+      });
+    }
+  });
+};
+
+// Find product that is being bought, and update the remaining stock
+let buyProduct = (productID, minusProduct) => {
+  let discountAmount = parseInt(minusProduct);
+  let currentAmount = 0;
+  db.productModel.findOne({_id: new mongodb.ObjectID(productID)}, function(error, result){
+    if(error){
+      console.log(error);
+    } else {
+      currentAmount = parseInt(result.amount);
+      currentAmount -= discountAmount;
+
+      db.productModel.findOneAndUpdate({_id: new mongodb.ObjectID(productID)}, {
+        amount: currentAmount
+      }, function(error, data) {
+        if(error) {
           console.log(error);
         } else {
           return data
@@ -219,5 +240,6 @@ module.exports = {
   deleteProduct,
   deleteUser,
   editProduct,
+  buyProduct,
   isAuthenticated
 };

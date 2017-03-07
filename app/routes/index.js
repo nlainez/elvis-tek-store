@@ -47,6 +47,16 @@ module.exports = () => {
             });
           });
       },
+      '/buyProduct/:id': (req, res, next) => {
+        h.findProductById(req.params.id)
+          .then(product => {
+            res.render('buyProduct', {
+              user: req.user,
+              host: config.host,
+              product: product
+            });
+          });
+      },
       '/editUser/:id': (req, res, next) => {
         h.findOne(req.params.id)
           .then(editUser => {
@@ -88,6 +98,10 @@ module.exports = () => {
       },
       '/editProduct/:id': (req, res, next) => {
         h.editProduct(req.params.id, req.body.product);
+        res.redirect('/home');
+      },
+      '/buyProduct/:id': (req, res, next) => {
+        h.buyProduct(req.params.id, req.body.product.amount);
         res.redirect('/home');
       }
       

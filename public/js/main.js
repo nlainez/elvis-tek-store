@@ -10,4 +10,12 @@ $(document).ready(function() {
     $('.row:last-child').attr('style', 'width: 1080px !important; margin: auto');
 
     $('#productAmount').dropdown();
+
+    $('#buyingPrice, #buyingAmount').mousemove(function(){
+        var buyingPrice = $('#buyingPrice').val();
+        var buyingAmount = $('#buyingAmount').val();
+        var subtotal = buyingAmount * buyingPrice;
+
+        $('#subtotal').val(subtotal);
+    });
   });

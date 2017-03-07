@@ -1,6 +1,6 @@
 <% include ./partials/header.ejs %>
   <div class="ui main text container segment">
-		<div class="ui huge header">New Product</div>
+		<div class="ui huge header">Edit Product</div>
 		<form id="products-form" action="/editProduct/<%= product._id %>" method="POST" class="ui form">
 		  	<div class="field">
 	        <label for="productName">Product Name: </label><br>
@@ -18,7 +18,6 @@
             <div class="field">
 						  <label for="amount">Amount to add to stock:</label><br>
 						  <select class="form-control ui selection dropdown" name="product[amount]" id="productAmount">
-                
               <% for(var i = 1; i <= 100; i++){ %>
                 <% if(i === product.amount) { %>
                   <option value="<%= product.amount %>" selected><%= product.amount %></option>
@@ -34,5 +33,4 @@
       <br />
 		</form>
 	</div>
-
 <% include ./partials/footer.ejs %>
