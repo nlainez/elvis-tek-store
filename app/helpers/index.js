@@ -182,6 +182,25 @@ let editProduct = (productID, product) => {
   });
 };
 
+// Find a user and change its permissions
+let editUser = (productID, isAdminValue) => {
+  db.userModel.findOne({ _id: new mongodb.ObjectID(productID) }, function(error, result) {
+    if(error){
+      console.log(error);
+    } else {
+      db.userModel.findByIdAndUpdate( { _id: new mongodb.ObjectID(productID) }, {
+        isAdmin: isAdminValue
+      }, function(error, data) {
+        if(error) {
+          console.log(error);
+        } else {
+          return data
+        }
+      });
+    }
+  });
+};
+
 // Find product that is being bought, and update the remaining stock
 let buyProduct = (productID, minusProduct) => {
   let discountAmount = parseInt(minusProduct);
@@ -239,6 +258,7 @@ module.exports = {
   incrementLike,
   deleteProduct,
   deleteUser,
+  editUser,
   editProduct,
   buyProduct,
   isAuthenticated
