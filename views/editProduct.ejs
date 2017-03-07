@@ -1,7 +1,7 @@
 <% include ./partials/header.ejs %>
   <div class="ui main text container segment">
 		<div class="ui huge header">New Product</div>
-		<form id="products-form" action="/addProducts" method="POST" class="ui form">
+		<form id="products-form" action="/editProduct/<%= product._id %>" method="POST" class="ui form">
 		  	<div class="field">
 	        <label for="productName">Product Name: </label><br>
 	        <input class="form-control" type="text" name="product[productName]" placeholder="New product name" value="<%= product.productName %>" />
@@ -11,19 +11,18 @@
           <div class="column">
             <div class="field">
               <label for="price">Price: </label><br>
-              <input class="form-control" type="number" name="quantity" min="1" max="100" name="product[price]" placeholder="Price" value="<%= product.price %>" />
+              <input class="form-control" type="number" min="0" max="5" step="0.05" name="product[price]" placeholder="Price" value="<%= product.price %>" />
             </div>
           </div>
           <div class="column">
             <div class="field">
-						  <label for="amount">Amount:</label><br>
+						  <label for="amount">Amount to add to stock:</label><br>
 						  <select class="form-control ui selection dropdown" name="product[amount]" id="productAmount">
                 
               <% for(var i = 1; i <= 100; i++){ %>
                 <% if(i === product.amount) { %>
                   <option value="<%= product.amount %>" selected><%= product.amount %></option>
                 <% } %>
-
                 <option value="<%= i %>"><%= i %></option>
               <% } %>
               </select>
