@@ -1,14 +1,14 @@
 <% include ./partials/header.ejs %>
   <div class="ui main text container segment">
 		<div class="ui huge header">Edit user</div>
-		<form id="products-form" action="/addProducts" method="POST" class="ui form">
+		<form id="products-form" action="/editUser/<%= user._id %>" method="POST" class="ui form">
 		  	<div class="field">
 	        <label for="fullName">User Name: </label><br>
 	        <input class="form-control" type="text" name="user[fullName]" placeholder="New product name" value="<%= user.fullName %>" readonly="readonly"/>
         </div>
         <div class="field">
 					<label for="amount"> Is Administrator:</label><br>
-					<select class="form-control ui selection dropdown" name="product[amount]" id="productAmount">
+					<select class="form-control ui selection dropdown" name="user[isAdmin]" id="productAmount">
               <% if(user.isAdmin){ %>
                 <option value="true" selected="selected">Yes</option>
                 <option value="false">No</option>
