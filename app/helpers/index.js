@@ -156,6 +156,35 @@ let createNewProduct = product => {
   });
 };
 
+// Find one product and update with new data
+let editProduct = (productID, product) => {
+  // {
+  //   $inc: {amount: product.amount}
+  // },
+  let newAmount = parseInt(product.amount);
+  let currentAmount = 0;
+  db.productModel.findOne({_id: new mongodb.ObjectID(productID)}, function (error, result) {
+    if(error) {
+      console.log(error);
+    } else {
+      currentAmount = parseInt(result.amount);
+      newAmount += currentAmount;
+
+      db.productModel.findOneAndUpdate( {_id: new mongodb.ObjectID(productID)}, {
+        productName: product.productName,
+        price: product.price,
+        amount: newAmount
+      }, function(error, data) {
+        if(error){
+          console.log(error);
+        } else {
+          return data
+        }
+      });
+    }
+  });
+};
+
 // Increment one "like" on a specific product
 let incrementLike = productID => {
   return db.productModel.findOneAndUpdate({_id: new mongodb.ObjectID(productID)}, {$inc: { like: 1 }}, function(error, data) {
@@ -166,7 +195,6 @@ let incrementLike = productID => {
     }
   });
   //return db.productModel.findByIdAndUpdate();
-
 };
 
 // A Middleware that checks to see if the user is authenticated & logged in
@@ -190,5 +218,6 @@ module.exports = {
   incrementLike,
   deleteProduct,
   deleteUser,
+  editProduct,
   isAuthenticated
 };
