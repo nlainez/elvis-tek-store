@@ -96,6 +96,10 @@ module.exports = () => {
         h.deleteUser(req.params.id);
         res.redirect('/users');
       },
+      '/editUser/:id': (req, res, next) => {
+        h.editUser(req.params.id, req.body.user.isAdmin);
+        res.redirect('/users');
+      },
       '/editProduct/:id': (req, res, next) => {
         h.editProduct(req.params.id, req.body.product);
         res.redirect('/home');
