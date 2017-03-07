@@ -85,6 +85,10 @@ module.exports = () => {
       '/deleteUser/:id': (req, res, next) => {
         h.deleteUser(req.params.id);
         res.redirect('/users');
+      },
+      '/editProduct/:id': (req, res, next) => {
+        h.editProduct(req.params.id, req.body.product);
+        res.redirect('/home');
       }
       
     },
