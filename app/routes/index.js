@@ -70,7 +70,22 @@ module.exports = () => {
 
     //////////////// Routes for "post" method
     'post': {
-      '/addProducts': {}
+      '/addProducts': (req, res, next) => {
+        h.createNewProduct(req.body.product);
+        res.redirect('/home');
+      },
+      '/likeProduct/:id': (req, res, next) => {
+        h.incrementLike(req.params.id);
+        res.redirect('/home');
+      },
+      '/deleteProduct/:id': (req, res, next) => {
+        h.deleteProduct(req.params.id);
+        res.redirect('/home');
+      },
+      '/deleteUser/:id': (req, res, next) => {
+        h.deleteUser(req.params.id);
+        res.redirect('/users');
+      }
       
     },
 

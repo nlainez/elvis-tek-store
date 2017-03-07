@@ -39,7 +39,12 @@
               </a>
             </td>
             <td>
-              <div name="2345678" onclick="deleteModal(this)" class="ui red button">Delete</div>
+              <form action="/deleteProduct/<%= user._id %>" method="POST">
+                <a href="/deleteProduct/<%= user._id %>">
+                  <button type="submit" value="Delete" class="ui red button">Delete</button>
+                </a>
+              </form>
+              <!--<div name="2345678" onclick="deleteModal(this)" class="ui red button">Delete</div>-->
             </td>
           </tr>
         <% }) %>

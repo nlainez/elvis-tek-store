@@ -13,7 +13,7 @@ let _registerRoutes = (routes, method) => {
       if(method === 'get') {
         router.get(key, routes[key]);
       } else if(method === 'post') {
-        router.post(key, router[key]);
+        router.post(key, routes[key]);
       } else if(method === 'put') {
         router.put(key, routes[key]);
       } else if(method === 'delete') {
@@ -96,12 +96,24 @@ let findProductById = productID => {
 
 // Delete specific product
 let deleteProduct = productID => {
-  db.productModel.deleteOne({ _id: new mongodb.ObjectID(productID)});
+  db.productModel.remove({ _id: new mongodb.ObjectID(productID)}, function(error) {
+    if(error) {
+      console.log(error);
+    } else {
+      return;
+    }
+  });
 };
 
 // Delete specific user
 let deleteUser = profileID => {
-  db.userModel.findOneAndRemove({ _id: new mongodb.ObjectID(profileID)});
+  db.userModel.remove({ _id: new mongodb.ObjectID(profileID)}, function(error) {
+    if(error) {
+      console.log(error);
+    } else {
+      return;
+    }
+  });
 };
 
 // Create a new user and returns that instanceof
@@ -144,6 +156,19 @@ let createNewProduct = product => {
   });
 };
 
+// Increment one "like" on a specific product
+let incrementLike = productID => {
+  return db.productModel.findOneAndUpdate({_id: new mongodb.ObjectID(productID)}, {$inc: { like: 1 }}, function(error, data) {
+    if(error){
+      console.log(error);
+    } else {
+      return data;
+    }
+  });
+  //return db.productModel.findByIdAndUpdate();
+
+};
+
 // A Middleware that checks to see if the user is authenticated & logged in
 let isAuthenticated = (req, res, next) => {
   if(req.isAuthenticated()) { // "req.isAuthenticated" is a method provided by Passport
@@ -162,7 +187,7 @@ module.exports = {
   findElvistekUsers,
   findElvistekProducts,
   findProductById,
-  // findUserById,
+  incrementLike,
   deleteProduct,
   deleteUser,
   isAuthenticated
